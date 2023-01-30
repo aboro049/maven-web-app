@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    tools{
+        maven "maven 3.8.5"
+    }
+    
+    stages{
+        stage ("Git clone"){
+            steps {
+                sh "echo starting git clone"
+                git credentialsId: 'Github_Cred', url: 'https://github.com/aboro049/maven-web-app.git'
+            }
+        }
+        
+        stage ("Maven Build"){
+            steps {
+                sh "echo starting maven build"
+                sh "mvn package"
+            }
+        }
+ }
+ }
